@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head'
 import { ArrowsClockwise, File, FileCsv } from 'phosphor-react'
 import { useEffect, useState } from 'react'
@@ -8,6 +9,7 @@ const Home = () => {
   const [fileName, setFileName] = useState<string>('')
   const [csv, setCsv] = useState<string | null>(null)
   const [json, setJson] = useState<string | null>(null)
+  const [highlighted, setHighlighted] = useState<boolean>(false)
 
   useEffect(() => {
     console.log(file)
@@ -25,6 +27,7 @@ const Home = () => {
     e.preventDefault()
     setFile(e.dataTransfer.files[0])
     setFileName(e.dataTransfer.files[0].name.split('.')[0])
+    setHighlighted(false)
   }
 
   const onDragOver = (e: any) => {
@@ -70,6 +73,12 @@ const Home = () => {
         <title>CSV to JSON</title>
         <meta name='description' content='Convert CSV files to JSON files' />
         <link rel='icon' href='/favicon.ico' />
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='true' />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'
+          rel='stylesheet'
+        />
       </Head>
 
       <Header>
@@ -78,7 +87,13 @@ const Home = () => {
 
       <Main>
         <Container>
-          <ContentCSV onDrop={onDrop} onDragOver={onDragOver} csv={csv as string}>
+          <ContentCSV
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onDragEnter={() => setHighlighted(true)}
+            onDragLeave={() => setHighlighted(false)}
+            highlighted={highlighted as boolean}
+            csv={csv as string}>
             {csv ? (
               <p>{csv}</p>
             ) : (

@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
-interface HomeProps  {
+interface HomeProps {
   csv?: string
   json?: string
+  highlighted?: boolean
 }
 
 export const Header = styled.header`
@@ -53,7 +54,8 @@ export const ContentCSV = styled.div<HomeProps>`
   background-color: var(--white);
   border-radius: 8px;
   border: 2px solid var(--blue);
-  box-shadow: inset 0 0 0 2px var(--lightblue);
+  box-shadow: ${(props) =>
+    props.highlighted ? 'inset 0 0 0 2px lightgreen' : 'inset 0 0 0 2px var(--lightblue)'} ;
   display: ${(props) => (props.csv ? 'block' : 'flex')};
   flex-direction: column;
   justify-content: center;

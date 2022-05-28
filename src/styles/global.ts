@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
     :root {
         --background: #f5f5f5;
         --blue: #006ABF;
@@ -39,3 +39,5 @@ export const GlobalStyle = createGlobalStyle`
         cursor: not-allowed;
     }
 `
+
+export default GlobalStyle

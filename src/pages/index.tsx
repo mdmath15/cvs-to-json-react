@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import { ArrowsClockwise, File, FileCsv } from 'phosphor-react'
 import { useEffect, useState } from 'react'
-import { ButtonsContainer, Container, Content, ContentCSV, Footer, Header, Main } from './styles'
+import { ButtonsContainer, Container, Content, ContentCSV, Footer, Header, Main } from '../styles/styles'
 
 const Home = () => {
   const [file, setFile] = useState<Blob | null>(null)

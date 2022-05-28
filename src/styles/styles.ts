@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-interface HomeProps {
+export interface HomeProps {
   csv?: string
   json?: string
   highlighted?: boolean

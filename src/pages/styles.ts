@@ -54,8 +54,7 @@ export const ContentCSV = styled.div<HomeProps>`
   background-color: var(--white);
   border-radius: 8px;
   border: 2px solid var(--blue);
-  box-shadow: ${(props) =>
-    props.highlighted ? 'inset 0 0 0 2px lightgreen' : 'inset 0 0 0 2px var(--lightblue)'} ;
+  box-shadow: inset 0 0 0 2px ${(props) => (props.highlighted ? 'lightgreen' : 'var(--lightblue)')};
   display: ${(props) => (props.csv ? 'block' : 'flex')};
   flex-direction: column;
   justify-content: center;

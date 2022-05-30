@@ -1,8 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head'
 import { ArrowsClockwise, File, FileCsv } from 'phosphor-react'
 import { useEffect, useState } from 'react'
-import { ButtonsContainer, Container, Content, ContentCSV, Footer, Header, Main } from '../styles/styles'
+import useMedia from '../hooks/useMedia'
+import {
+  ButtonsContainer,
+  Container,
+  Content,
+  ContentCSV,
+  Footer,
+  Header,
+  Main
+} from '../styles/styles'
 
 const Home = () => {
   const [file, setFile] = useState<Blob | null>(null)
@@ -10,10 +20,9 @@ const Home = () => {
   const [csv, setCsv] = useState<string | null>(null)
   const [json, setJson] = useState<string | null>(null)
   const [highlighted, setHighlighted] = useState<boolean>(false)
+  const mobile = useMedia('(max-width: 740px)')
 
   useEffect(() => {
-    console.log(file)
-
     if (file) {
       const reader = new FileReader()
       reader.readAsText(file)
@@ -22,6 +31,12 @@ const Home = () => {
       }
     }
   }, [file])
+
+  const onChange = (e: any) => {
+    e.preventDefault()
+    setFile(e.target.files[0])
+    setFileName(e.target.files[0].name)
+  }
 
   const onDrop = (e: any) => {
     e.preventDefault()
@@ -99,8 +114,14 @@ const Home = () => {
             ) : (
               <>
                 <FileCsv size={64} color={'#006ABF'} />
-                <p>Drop your CSV file here</p>
+                {!mobile && <p>Drop your CSV file here</p>}
               </>
+            )}
+            {mobile && !csv && (
+              <div>
+                <label htmlFor='file'>Upload your file</label>
+                <input type='file' accept='.csv' name='file' id='file' onChange={onChange} />
+              </div>
             )}
           </ContentCSV>
           <button onClick={handle} disabled={file ? false : true}>

@@ -25,6 +25,12 @@ export const Main = styled.main`
   justify-content: space-evenly;
   align-items: center;
   margin: 0 auto;
+
+  @media (max-width: 742px) {
+    flex-direction: column;
+    margin: .5rem 0;
+    gap: 1rem;
+  }
 `
 
 export const Container = styled.div`
@@ -64,6 +70,27 @@ export const ContentCSV = styled.div<HomeProps>`
     color: var(--blue);
     padding: 0.25rem;
     margin-top: ${(props) => (props.csv ? '0' : '1rem')};
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    padding: 1rem 1rem;
+    margin-top: 1rem;
+    background-color: var(--blue);
+    color: var(--white);
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 2px var(--blue);
+    cursor: pointer;
+
+    &:active {
+      box-shadow: inset 0 0 0 2px var(--lightblue);
+    }
   }
 `
 

@@ -39,6 +39,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 1rem;
 
+
   button {
     padding: 0.5rem;
     border-radius: 8px;
@@ -65,6 +66,10 @@ export const ContentCSV = styled.div<HomeProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 350px) {
+    width: 280px;
+  }
 
   p {
     color: var(--blue);
@@ -105,6 +110,10 @@ export const Content = styled.div<HomeProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 350px) {
+    width: 280px;
+  }
 
   p {
     color: var(--blue);
